@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="7d613a1c-46a7-48e4-bebe-2133bac95f71" >
+		<http:listener-connection host="0.0.0.0" port="8085" />
+	</http:listener-config>
+	<flow name="mulesoft-jenkins-ci-cdFlow" doc:id="0d2f0337-827c-448b-819c-1f8900ef0be2" >
+		<http:listener doc:name="Listener" doc:id="a0a8bd12-fda0-48c6-817b-1f2046734828" config-ref="HTTP_Listener_config" path="/request"/>
+		<set-payload value='#[{&#10;	"status": "Successful",&#10;	"message": "Yay! Automated my mule API"&#10;}]' doc:name="Set Payload" doc:id="e14e5bdd-494a-4ddf-bfc5-e446e22513ed" />
+	</flow>
+</mule>
